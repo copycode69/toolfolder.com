@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processed Image</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff7f50, #ff6347, #ff4500);
+            font-family: 'Courier New', Courier, monospace;
+            color: #ffffff;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #ffebcd;
+            font-size: 40px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 60px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #ffebcd;
+        }
+
+        img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+            border: 5px solid #ff6347;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #ff4500;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        a:hover {
+            background-color: #ff6347;
+            transform: scale(1.1);
+        }
+
+        .download-link {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Processed Image</h1>
+    <p>Your image with the background removed is ready!</p>
+    <img src="{{ url_for('static', filename='processed/' + processed_filename) }}" alt="Processed Image">
+    <br>
+    <a href="/">Upload Another Image</a>
+    <br>
+    <a class="download-link" href="{{ url_for('static', filename='processed/' + processed_filename) }}" download>Download Image</a>
+</body>
+</html>

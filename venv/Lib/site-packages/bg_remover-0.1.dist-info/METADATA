@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: bg-remover
+Version: 0.1
+Summary: A Python package for making the background of an image transparent
+Home-page: https://github.com/CyberTKR/background-remover
+Author: Tolga
+Author-email: tolg@cybertkr.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Pillow (>=8.2.0)
+
+UNKNOWN
+
+
