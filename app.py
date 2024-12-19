@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 import os
 from werkzeug.utils import secure_filename
-from tools.rembg_tool import remove_background  # Import your custom background removal tool
+from tools.rembg_tool import remove_background  # Custom background removal tool
 
 app = Flask(__name__)
 
