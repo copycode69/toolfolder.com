@@ -46,7 +46,7 @@ def upload_image():
                 return f"Error processing image: {str(e)}", 500
     
     # Render the upload form for GET requests
-    return render_template('index.html')
+    return render_template('home.html')
 
 if __name__ == '__main__':
     # Use Render's PORT environment variable for deployment
