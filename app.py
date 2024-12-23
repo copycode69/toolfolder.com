@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['PROCESSED_FOLDER'] = 'static/processed'
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit file size to 16 MB
 
 # Create necessary directories if they don't exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -41,12 +42,14 @@ def upload_image():
             # Use the remove_background function
             try:
                 remove_background(input_path, output_path)
+                # Delete the original uploaded file to free up memory
+                os.remove(input_path)
                 return render_template('result.html', processed_filename=processed_filename)
             except Exception as e:
                 return f"Error processing image: {str(e)}", 500
     
     # Render the upload form for GET requests
-    return render_template('home.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     # Use Render's PORT environment variable for deployment
