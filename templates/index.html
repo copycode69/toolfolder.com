@@ -3,139 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Removal Tool</title>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #ff7f50, #ff4500);
-            font-family: 'Courier New', Courier, monospace;
-            color: #ffffff;
-            text-align: center;
-            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            color: #ffebcd;
-            font-size: 50px;
-            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
-            margin-top: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 50px 0;
-        }
-
-        form {
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 5px dashed #ff6347;
-            padding: 40px;
-            width: 400px;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
-            border-radius: 12px;
-        }
-
-        label {
-            font-size: 20px;
-            color: #ff4500;
-            font-weight: bold;
-        }
-
-        input[type="file"] {
-            font-size: 16px;
-            margin: 15px 0;
-            background-color: #ff7f50;
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid #ff6347;
-            color: #ffffff;
-            cursor: pointer;
-        }
-
-        input[type="file"]:hover {
-            background-color: #ff6347;
-            border-color: #ff4500;
-        }
-
-        button {
-            background-color: #ff4500;
-            color: white;
-            font-size: 22px;
-            font-weight: bold;
-            border: none;
-            padding: 15px 40px;
-            cursor: pointer;
-            border-radius: 10px;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        button:hover {
-            background-color: #ff6347;
-            transform: scale(1.1);
-        }
-
-        footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #ffffff;
-            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
-        }
-
-        footer p {
-            font-style: italic;
-        }
-
-        footer .credit a {
-            color: #ffebcd;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer .credit a:hover {
-            text-decoration: underline;
-        }
-
-        .upload-instructions {
-            font-size: 16px;
-            color: #ffebcd;
-            margin-top: -10px;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-    </style>
+    <title>Image Background Removal</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Retro Background Removal Tool</h1>
-        <p class="upload-instructions">Upload an image to magically remove its background.</p>
-        <div class="form-container">
-            <form action="/" method="POST" enctype="multipart/form-data">
-                <label for="file">Choose your image file:</label><br>
-                <input type="file" name="file" id="file" required><br><br>
-                <button type="submit">Remove Background</button>
-            </form>
-        </div>
-        <footer>
-            <p>Bring your images to life without the clutter!</p>
-            <p class="credit">Powered by <a href="https://jaytiwari.in" target="_blank">jaytiwari.in</a></p>
-        </footer>
-    </div>
+    <h1>Upload an Image to Remove the Background</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Choose an image</label>
+        <input type="file" name="file" id="file" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
 </body>
 </html>
