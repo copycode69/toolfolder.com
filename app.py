@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 from rembg import remove
-from PIL import Image
+from PIL import Image as PILImage
+import gc
 
 app = Flask(__name__)
 
@@ -10,6 +11,9 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads'
 PROCESSED_FOLDER = 'static/processed'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+# Max upload size (16 MB)
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB limit
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PROCESSED_FOLDER'] = PROCESSED_FOLDER
@@ -21,6 +25,12 @@ os.makedirs(PROCESSED_FOLDER, exist_ok=True)
 # Check if file is allowed
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Resize image before processing (optional)
+def resize_image(image_path, max_size=(800, 800)):
+    with PILImage.open(image_path) as img:
+        img.thumbnail(max_size)
+        img.save(image_path)
 
 # Remove background using rembg
 def remove_background(input_path, output_path):
@@ -48,9 +58,15 @@ def upload_file():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         
+        # Resize the image before processing (optional)
+        resize_image(filepath)
+
         # Process the image (remove background)
         processed_image_path = os.path.join(app.config['PROCESSED_FOLDER'], filename)
         remove_background(filepath, processed_image_path)
+
+        # Clean up memory
+        gc.collect()
 
         return redirect(url_for('result', filename=filename))
     else:
@@ -61,5 +77,4 @@ def result(filename):
     return render_template('result.html', filename=filename)
 
 if __name__ == '__main__':
-   app.run(debug=True, host='localhost', port=5000)
-
+    app.run(debug=True, host='localhost', port=5000)
